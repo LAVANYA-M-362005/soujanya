@@ -1,0 +1,333 @@
+/* ------------- RESET ------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* -------- HTML & BODY SETUP -------- */
+html {
+  width: 100%;
+  overflow-x: hidden;
+  /* Prevent horizontal scrolling */
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  font-family: "Comic Sans MS", cursive;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE 10+ */
+}
+
+body::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari */
+}
+
+/* -------- BACKGROUND VIDEO -------- */
+.bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -10;
+  object-position: center center;
+  transform: scale(0.9);
+  filter: brightness(0.75);
+}
+
+/* -------- VIDEO OVERLAY -------- */
+.video-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  backdrop-filter: blur(1px);
+  background: rgba(0, 0, 0, 0.2);
+  z-index: -9;
+}
+
+/* -------- APP WRAPPER -------- */
+.app-wrapper {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  /* Center glass-layer horizontally */
+  align-items: flex-start;
+  /* Top alignment */
+  padding: 2rem 1rem;
+  background: transparent;
+  overflow-x: hidden;
+}
+
+
+
+.glass-layer {
+  width: 100%;
+  max-width: 1100px;
+  /* Controls how wide the centered content can be */
+  margin: 0 auto;
+  /* Center horizontally */
+  padding: 2rem;
+  color: white;
+  background: rgba(198, 114, 178, 0.05);
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+  text-align: center;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Center inner elements like message and cards */
+}
+
+
+
+
+/* -------- STARS TEXTURE -------- */
+.stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent url("https://www.transparenttextures.com/patterns/stardust.png") repeat;
+  z-index: -8;
+  opacity: 0.2;
+  animation: starMove 50s linear infinite;
+}
+
+@keyframes starMove {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: -1000px 1000px;
+  }
+}
+
+/* -------- HEADER -------- */
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #ffdef8;
+  text-shadow: 2px 2px 8px black;
+}
+
+/* -------- BALLOONS -------- */
+.balloon-area {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.balloon {
+  position: absolute;
+  bottom: -100px;
+  font-size: 2.5rem;
+  pointer-events: auto;
+  cursor: pointer;
+  animation: floatUp 12s linear infinite;
+}
+
+@keyframes floatUp {
+  0% {
+    bottom: -100px;
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(-30px);
+  }
+
+  100% {
+    bottom: 100vh;
+    transform: translateX(30px);
+  }
+}
+
+/* -------- HEARTS & GIFTS -------- */
+.floating-hearts,
+.floating-gifts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.heart,
+.gift {
+  position: absolute;
+  font-size: 1.5rem;
+  top: 100%;
+  animation: floatHeart 10s infinite ease-in-out;
+  opacity: 0.6;
+}
+
+.heart {
+  color: #ff87ca;
+}
+
+.gift {
+  color: #ffd700;
+}
+
+@keyframes floatHeart {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: translateY(-110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* -------- MESSAGE BOX -------- */
+.message-box {
+  margin: 2rem auto;
+  padding: 1.5rem;
+  max-width: 700px;
+  font-size: 1.3rem;
+  background: rgba(255, 240, 245, 0.3);
+  border: 2px dashed #ffb6c1;
+  border-radius: 12px;
+  color: white;
+  animation: fadeIn 1s ease-in-out;
+  backdrop-filter: blur(8px);
+  z-index: 4;
+  position: relative;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* -------- SCROLL LETTER -------- */
+.scroll-letter {
+  margin: 2rem auto;
+  max-width: 600px;
+  padding: 1.5rem;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid white;
+  font-size: 1.2rem;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+/* -------- FLIP CARDS -------- */
+.card-gallery {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+.flip-card {
+  width: 200px;
+  height: 250px;
+  perspective: 1000px;
+}
+
+.flip-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.flip-card:hover .flip-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-front,
+.flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.flip-back {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  transform: rotateY(180deg);
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 1px 1px 3px black;
+  backdrop-filter: blur(6px);
+}
+
+/* -------- FOOTER -------- */
+footer {
+  margin-top: 3rem;
+  font-size: 1.2rem;
+  color: #ffd3f5;
+  text-shadow: 1px 1px 5px black;
+}
+
+/* -------- BALLOON BURST PIECES -------- */
+.burst-piece {
+  position: absolute;
+  font-size: 1.2rem;
+  animation: fallDown 1.2s forwards ease-in;
+  pointer-events: none;
+  opacity: 0.9;
+  z-index: 9;
+}
+
+@keyframes fallDown {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(200px) scale(0.4);
+    opacity: 0;
+  }
+}
